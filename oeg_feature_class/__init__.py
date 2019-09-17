@@ -59,39 +59,29 @@ LIMITS = {
   MagnetType.MFL: {
 
     FeatureClass.GENE: lambda thick, length, width, depth: (
-      (length - 30, length + 30),  # точность по длине, мм -/+
-      (width - 30, width + 30),  # точность по ширине, мм -/+
-      (depth - 0.1 * thick, depth + 0.1 * thick),  # точность по глубине, мм -/+
+      lim(length, 0, 30),  # точность по длине, мм -/+
+      lim(width, 0, 30),  # точность по ширине, мм -/+
+      lim_z(depth, thick, 0.1),  # точность по глубине, мм -/+
     ),
 
     FeatureClass.PITT: lambda thick, length, width, depth: (
-      (length - 20, length + 20),
-      (width - 30, width + 30),
-      (depth - 0.1 * thick, depth + 0.1 * thick),
+      lim(length, 0, 20), lim(width, 0, 30), lim_z(depth, thick, 0.1),
     ),
 
     FeatureClass.PINH: lambda thick, length, width, depth: (
-      (length - 15, length + 15),
-      (width - (thick + 30), width + (thick + 30)),
-      (depth - 0.2 * thick, depth + 0.2 * thick),
+      lim(length, 0, 15), lim(width, thick, 30), lim_z(depth, thick, 0.2),
     ),
 
     FeatureClass.AXGR: lambda thick, length, width, depth: (
-      (length - 20, length + 20),
-      (width - 30, width + 30),
-      (depth - 0.2 * thick, depth + 0.2 * thick),
+      lim(length, 0, 20), lim(width, 0, 30), lim_z(depth, thick, 0.2),
     ),
 
     FeatureClass.CIGR: lambda thick, length, width, depth: (
-      (length - 20, length + 20),
-      (width - (thick + 30), width + (thick + 30)),
-      (depth - 0.15 * thick, depth + 0.15 * thick),
+      lim(length, 0, 20), lim(width, thick, 30), lim_z(depth, thick, 0.15),
     ),
 
     FeatureClass.CISL: lambda thick, length, width, depth: (
-      (length - 20, length + 20),
-      (width - (thick + 30), width + (thick + 30)),
-      (depth - 0.15 * thick, depth + 0.15 * thick),
+      lim(length, 0, 20), lim(width, thick, 30), lim_z(depth, thick, 0.15),
     ),
 
   },
@@ -99,43 +89,45 @@ LIMITS = {
   MagnetType.TFI: {
 
     FeatureClass.GENE: lambda thick, length, width, depth: (
-      (length - 30, length + 30),
-      (width - 30, width + 30),
-      (depth - 0.1 * thick, depth + 0.1 * thick),
+      lim(length, 0, 30), lim(width, 0, 30), lim_z(depth, thick, 0.1),
     ),
 
     FeatureClass.PITT: lambda thick, length, width, depth: (
-      (length - 30, length + 30),
-      (width - 20, width + 20),
-      (depth - 0.1 * thick, depth + 0.1 * thick),
+      lim(length, 0, 30), lim(width, 0, 20), lim_z(depth, thick, 0.1),
     ),
 
     FeatureClass.PINH: lambda thick, length, width, depth: (
-      (length - (thick + 30), length + (thick + 30)),
-      (width - 15, width + 15),
-      (depth - 0.2 * thick, depth + 0.2 * thick),
+      lim(length, thick, 30), lim(width, 0, 15), lim_z(depth, thick, 0.2),
     ),
 
     FeatureClass.CIGR: lambda thick, length, width, depth: (
-      (length - 30, length + 30),
-      (width - 20, width + 20),
-      (depth - 0.2 * thick, depth + 0.2 * thick),
+      lim(length, 0, 30), lim(width, 0, 20), lim_z(depth, thick, 0.2),
     ),
 
     FeatureClass.AXGR: lambda thick, length, width, depth: (
-      (length - 30, length + 30),
-      (width - 20, width + 20),
-      (depth - 0.15 * thick, depth + 0.15 * thick),
+      lim(length, 0, 30), lim(width, 0, 20), lim_z(depth, thick, 0.15),
     ),
 
     FeatureClass.AXSL: lambda thick, length, width, depth: (
-      (length - 30, length + 30),
-      (width - 20, width + 20),
-      (depth - 0.15 * thick, depth + 0.15 * thick),
+      lim(length, 0, 30), lim(width, 0, 20), lim_z(depth, thick, 0.15),
     ),
 
   },
 }
+
+
+def lim_z(depth, thick, val):
+    """
+    limits for depth
+    """
+    return (depth - val * thick, depth + val * thick)
+
+
+def lim(size, thick, val):
+    """
+    limits for width/length
+    """
+    return (size - (thick + val), size + (thick + val))
 
 
 def size_class(length, width, thick):
