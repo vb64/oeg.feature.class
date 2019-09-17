@@ -8,6 +8,7 @@ install:
 
 script:
 - python -m flake8 --max-line-length=120 oeg_feature_class
+- python -m pylint oeg_feature_class
 - python -m coverage run tests/run_tests.py
 - python -m coveralls
 - python -m coverage report --skip-covered
