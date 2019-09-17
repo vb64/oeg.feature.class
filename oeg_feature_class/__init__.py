@@ -11,7 +11,7 @@ class Error(Exception):
     """
 
 
-class MagnetType:  # pylint: disable=too-few-public-methods
+class MagnetType:  # pylint: disable=too-few-public-methods,no-init
     """
     Magnet system types
     """
@@ -20,7 +20,7 @@ class MagnetType:  # pylint: disable=too-few-public-methods
     CAL = 'CAL'  # caliper
 
 
-class FeatureClass:  # pylint: disable=too-few-public-methods
+class FeatureClass:  # pylint: disable=too-few-public-methods,no-init
     """
     class for given geometry parameters
     """
