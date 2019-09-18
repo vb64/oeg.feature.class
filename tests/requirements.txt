@@ -3,3 +3,4 @@ pylint
 coverage
 twine
 coveralls
+wheel
