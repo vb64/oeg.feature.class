@@ -182,17 +182,14 @@ def is_detectable(sizes, thick, magnet_type=MagnetType.MFL):
     """
     length, width, depth = sizes
     cls = size_class(length, width, thick)
-    borders = MIN_PERCENT[magnet_type]
-    if cls not in borders:
+    min_percent = MIN_PERCENT[magnet_type]
+    if cls not in min_percent:
         return False
 
     if depth < 0:  # through hole
         depth = thick
 
-    min_percent = borders[cls]
-    percent = int(round(depth * 100.0 / thick, 0))
-
-    return percent >= min_percent
+    return int(round(depth * 100.0 / thick, 0)) >= min_percent[cls]
 
 
 def is_in_limits(calcked, real, thick, magnet_type=MagnetType.MFL):
@@ -206,17 +203,11 @@ def is_in_limits(calcked, real, thick, magnet_type=MagnetType.MFL):
           real, cls, magnet_type
         ))
 
-    length_ok, width_ok, depth_ok = False, False, False
     length, width, depth = calcked
     limits_length, limits_width, limits_depth = limits[cls](thick, *real)
 
-    if limits_length[0] <= length <= limits_length[1]:
-        length_ok = True
-
-    if limits_width[0] <= width <= limits_width[1]:
-        width_ok = True
-
-    if limits_depth[0] <= depth <= limits_depth[1]:
-        depth_ok = True
-
-    return (length_ok, width_ok, depth_ok)
+    return (
+      limits_length[0] <= length <= limits_length[1],
+      limits_width[0] <= width <= limits_width[1],
+      limits_depth[0] <= depth <= limits_depth[1],
+    )

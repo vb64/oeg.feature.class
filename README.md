@@ -65,3 +65,12 @@ True
 depth_ok
 False
 ```
+
+## Разработка
+
+```
+$ git clone git@github.com:vb64/oeg.feature.class.git
+$ cd oeg.feature.class
+$ make setup PYTHON_BIN=/path/to/python/executable
+$ make tests
+```
