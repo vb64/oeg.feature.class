@@ -46,6 +46,8 @@ upload_piptest: tests dist
 upload_pip: tests dist
 	$(PYTHON) -m twine upload dist/*
 
+setup2: setup_python2 setup_pip
+
 setup: setup_python setup_pip
 
 setup_pip:
@@ -54,3 +56,6 @@ setup_pip:
 
 setup_python:
 	$(PYTHON_BIN) -m venv ./venv
+
+setup_python2:
+	$(PYTHON_BIN) -m virtualenv ./venv

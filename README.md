@@ -71,6 +71,19 @@ False
 ```
 $ git clone git@github.com:vb64/oeg.feature.class.git
 $ cd oeg.feature.class
-$ make setup PYTHON_BIN=/path/to/python/executable
+```
+При использовании Python 3.7:
+```
+$ make setup PYTHON_BIN=/path/to/python37/executable
+```
+При использовании Python 2.7:
+```
+$ make setup2 PYTHON_BIN=/path/to/python27/executable
+```
+После запуска набора автотестов
+```
 $ make tests
 ```
+в случае успеха вы должны увидеть что-то типа этого:
+
+![Test suite success](img/coverage.PNG)
