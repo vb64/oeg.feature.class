@@ -27,7 +27,7 @@ class TestFeatureClass(TestBase):
 
     def test_class_pitt(self):
         """
-        FeatureClass.GENE
+        FeatureClass.PITT
         """
         from oeg_feature_class import FeatureClass, size_class, is_in_limits, MagnetType
 
@@ -132,6 +132,10 @@ class TestFeatureClass(TestBase):
 
         with self.assertRaises(Error) as context:
             size_class(0, 10, 10)
+        self.assertIn('Wrong FeatureClass params', str(context.exception))
+
+        with self.assertRaises(Error) as context:
+            size_class(-1, 10, 10)
         self.assertIn('Wrong FeatureClass params', str(context.exception))
 
     def test_is_in_limits(self):  # pylint: disable=too-many-locals
