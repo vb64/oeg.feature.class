@@ -1,8 +1,6 @@
-# oeg_feature_class
-
-[![Python 2.7 3.7](https://img.shields.io/travis/vb64/oeg.feature.class.svg?label=Python%202.7%203.7&style=plastic)](https://travis-ci.org/vb64/oeg.feature.class)
-[![Code Climate](https://img.shields.io/codeclimate/maintainability-percentage/vb64/oeg.feature.class.svg?label=Code%20Climate&style=plastic)](https://codeclimate.com/github/vb64/oeg.feature.class)
-[![Coverage Status](https://coveralls.io/repos/github/vb64/oeg.feature.class/badge.svg?branch=master)](https://coveralls.io/github/vb64/oeg.feature.class?branch=master)
+# Модуль Python для проверки точности определения размеров дефектов газопровода
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vb64/oeg.feature.class/oeg.feature.class%20tests?label=Python%202.7%203.6%203.7%203.8&style=plastic)](https://github.com/vb64/oeg.feature.class/actions?query=workflow%3A%22oeg.feature.class+tests%22)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/63b6127420a04315913e8aee4fbf9914)](https://www.codacy.com/gh/vb64/oeg.feature.class/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vb64/oeg.feature.class&amp;utm_campaign=Badge_Grade)
 
 Этот модуль Python реализует определение "класса размера дефекта" трубопровода согласно [Specifications and requirements for intelligent pig inspection of pipelines](http://www.iliassociation.org/documents/industry/POF%20specs%20V3_2%20January%202005.pdf) 
 
@@ -29,8 +27,8 @@ $ pip install oeg_feature_class
 from oeg_feature_class import size_class, FeatureClass
 
 # дефект размером 100x100 мм на стенке трубы толщиной 10 мм является дефектом класса "обширный"
-size_class(100, 100, 10) == FeatureClass.GENE
-True
+assert size_class(100, 100, 10) == FeatureClass.GENE
+
 # дефекты с нулевыми размерами не допускаются
 size_class(0, 100, 10)
 oeg_feature_class.Error: Wrong FeatureClass params. l=0 w=100 t=10
@@ -40,8 +38,7 @@ oeg_feature_class.Error: Wrong FeatureClass params. l=0 w=100 t=10
 from oeg_feature_class import is_detectable, MagnetType
 
 # дефект размером 10x10 мм глубиной 5 мм на стенке трубы толщиной 11 мм должен определяться снарядами с продольным намагничиванием
-is_detectable((10, 10, 5), 11, magnet_type=MagnetType.MFL)
-True
+assert is_detectable((10, 10, 5), 11, magnet_type=MagnetType.MFL)
 
 # функция is_in_limits проверяет, укладываются ли в допустимую погрешность вычисленные размеры дефекта по сравнению с его реальными размерами
 # при заданных толщине стенки трубы и типе намагничивания
@@ -56,14 +53,11 @@ calcked = (72, 11, 1)
 length_ok, width_ok, depth_ok = is_in_limits(calcked, real, 16.6, magnet_type=MagnetType.TFI)
 
 # вычисленная длина укладывается в допустимую погрешность
-length_ok
-True
+assert length_ok
 # вычисленная ширина укладывается в допустимую погрешность
-width_ok
-True
+assert width_ok
 # вычисленная глубина НЕ укладывается в допустимую погрешность
-depth_ok
-False
+assert not depth_ok
 ```
 
 ## Разработка
@@ -72,18 +66,15 @@ False
 $ git clone git@github.com:vb64/oeg.feature.class.git
 $ cd oeg.feature.class
 ```
-При использовании Python 3.7:
-```
-$ make setup PYTHON_BIN=/path/to/python37/executable
-```
-При использовании Python 2.7:
+При использовании Python
 ```
 $ make setup2 PYTHON_BIN=/path/to/python27/executable
 ```
-После запуска набора автотестов
+При использовании Python 3
+```
+$ make setup PYTHON_BIN=/path/to/python37/executable
+```
+Затем
 ```
 $ make tests
 ```
-в случае успеха вы должны увидеть что-то типа этого:
-
-![Test suite success](img/coverage.PNG)

@@ -1,5 +1,5 @@
 """
-make test T=test_feature_class
+make test T=test_feature_class.py
 """
 from . import TestBase
 
@@ -8,7 +8,8 @@ class TestFeatureClass(TestBase):
     """
     oeg_feature_class
     """
-    def test_class_gene(self):
+    @staticmethod
+    def test_class_gene():
         """
         FeatureClass.GENE
         """
@@ -18,14 +19,15 @@ class TestFeatureClass(TestBase):
         real = (100, 100, 5)
         calcked = (90, 90, 6)
 
-        self.assertEqual(size_class(real[0], real[1], thick), FeatureClass.GENE)
+        assert size_class(real[0], real[1], thick) == FeatureClass.GENE
 
-        self.assertEqual(is_in_limits(calcked, real, thick, magnet_type=MagnetType.MFL), (True, True, True))
-        self.assertEqual(is_in_limits(calcked, real, thick, magnet_type=MagnetType.TFI), (True, True, True))
-        self.assertEqual(is_in_limits((90, 90, 1), real, 30, magnet_type=MagnetType.TFI), (True, True, False))
-        self.assertEqual(is_in_limits((90, 5, 1), real, 30, magnet_type=MagnetType.TFI), (True, False, False))
+        assert is_in_limits(calcked, real, thick, magnet_type=MagnetType.MFL) == (True, True, True)
+        assert is_in_limits(calcked, real, thick, magnet_type=MagnetType.TFI) == (True, True, True)
+        assert is_in_limits((90, 90, 1), real, 30, magnet_type=MagnetType.TFI) == (True, True, False)
+        assert is_in_limits((90, 5, 1), real, 30, magnet_type=MagnetType.TFI) == (True, False, False)
 
-    def test_class_pitt(self):
+    @staticmethod
+    def test_class_pitt():
         """
         FeatureClass.PITT
         """
@@ -35,11 +37,11 @@ class TestFeatureClass(TestBase):
         real = (10, 10, 10)
         calcked = (9, 9, 6)
 
-        self.assertEqual(size_class(real[0], real[1], thick), FeatureClass.PITT)
+        assert size_class(real[0], real[1], thick) == FeatureClass.PITT
 
-        self.assertEqual(is_in_limits(calcked, real, thick, magnet_type=MagnetType.MFL), (True, True, False))
-        self.assertEqual(is_in_limits(calcked, real, thick, magnet_type=MagnetType.TFI), (True, True, False))
-        self.assertEqual(is_in_limits((90, 90, 1), real, 30, magnet_type=MagnetType.TFI), (False, False, False))
+        assert is_in_limits(calcked, real, thick, magnet_type=MagnetType.MFL) == (True, True, False)
+        assert is_in_limits(calcked, real, thick, magnet_type=MagnetType.TFI) == (True, True, False)
+        assert is_in_limits((90, 90, 1), real, 30, magnet_type=MagnetType.TFI) == (False, False, False)
 
     def test_class_pinh(self):
         """
