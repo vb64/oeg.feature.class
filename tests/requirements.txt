@@ -1,6 +1,5 @@
+pytest
+pytest-cov
 flake8
 pylint
-coverage
-twine
-coveralls
-wheel
+codacy-coverage
