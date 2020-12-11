@@ -26,17 +26,17 @@ jobs:
 
     - name: flake8
       run: |
-        flake8 --count --show-source --statistics --max-line-length=120 oeg.feature.class
+        flake8 --count --show-source --statistics --max-line-length=120 oeg_feature_class
         flake8 --count --show-source --statistics --max-line-length=120 tests/test
 
     - name: pylint
       run: |
-        python -m pylint oeg.feature.class
+        python -m pylint oeg_feature_class
         python -m pylint tests/test
 
     - name: pytest
       env:
         CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
       run: |
-        pytest --cov=oeg.feature.class --cov-report xml --cov-report term:skip-covered --durations=5 tests
+        pytest --cov=oeg_feature_class --cov-report xml --cov-report term:skip-covered --durations=5 tests
         python-codacy-coverage -r coverage.xml
