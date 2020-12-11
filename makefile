@@ -43,17 +43,17 @@ upload_piptest: tests dist
 upload_pip: tests dist
 	$(PYTHON) -m twine upload dist/*
 
-setup2: setup_python2 setup_pip
-
 setup: setup_python setup_pip
+
+setup3: setup_python3 setup_pip
 
 setup_pip:
 	$(PIP) --upgrade pip
 	$(PIP) -r tests/requirements.txt
 	$(PIP) -r deploy.txt
 
-setup_python:
+setup_python3:
 	$(PYTHON_BIN) -m venv ./venv
 
-setup_python2:
+setup_python:
 	$(PYTHON_BIN) -m virtualenv ./venv
