@@ -74,10 +74,7 @@ $ make setup2 PYTHON_BIN=/path/to/python27/executable
 ```
 $ make setup PYTHON_BIN=/path/to/python37/executable
 ```
-После запуска набора автотестов
+Затем
 ```
 $ make tests
 ```
-в случае успеха вы должны увидеть что-то типа этого:
-
-![Test suite success](img/coverage.PNG)
