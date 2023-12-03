@@ -1,7 +1,9 @@
 # Модуль Python для проверки точности определения размеров дефектов газопровода
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vb64/oeg.feature.class/oeg.feature.class%20tests?label=Python%202.7%203.6%203.7%203.8&style=plastic)](https://github.com/vb64/oeg.feature.class/actions?query=workflow%3A%22oeg.feature.class+tests%22)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/63b6127420a04315913e8aee4fbf9914)](https://www.codacy.com/gh/vb64/oeg.feature.class/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vb64/oeg.feature.class&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/63b6127420a04315913e8aee4fbf9914)](https://www.codacy.com/gh/vb64/oeg.feature.class/dashboard?utm_source=github.com&utm_medium=referral&utm_content=vb64/oeg.feature.class&utm_campaign=Badge_Coverage)
+
+Этот репозитарий заморожен и существует для обеспечения обратной совместимости. Вместо него следует использовать репозитарии:
+
+- [Python class for pipeline anomaly dimension classification](https://github.com/vb64/pipeline.anomaly.dimension.class)
+- [Модуль Python для проверки точности определения размеров дефектов газопровода](https://github.com/vb64/pipeline.anomaly.detection.gazprom)
 
 Этот модуль Python реализует определение "класса размера дефекта" трубопровода согласно [Specifications and requirements for intelligent pig inspection of pipelines](http://www.iliassociation.org/documents/industry/POF%20specs%20V3_2%20January%202005.pdf) 
 
